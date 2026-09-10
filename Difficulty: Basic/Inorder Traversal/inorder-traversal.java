@@ -9,22 +9,26 @@ class Node {
 }*/
 
 class Solution {
-  private void inorder(Node root, ArrayList<Integer> list){
-          
-   if (root == null) {
-       return;
-   }
-
-   inorder(root.left,list);
-   list.add(root.data);
-   inorder(root.right,list);
-
-      }
     public ArrayList<Integer> inOrder(Node root) {
         // code here
-   ArrayList<Integer> list = new ArrayList<>();
-    inorder(root,list);
-      return list;
-
+        Stack<Node>st=new Stack<>();
+        ArrayList<Integer>list=new ArrayList<>();
+        
+        
+        while(!st.isEmpty() || root!=null){
+            while(root!=null){
+                st.push(root);
+                root=root.left;
+                
+            }
+           
+                root=st.pop();
+                list.add(root.data);
+                
+                root=root.right;
+                
+            
+        }
+        return list;
     }
 }
